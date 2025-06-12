@@ -1,28 +1,11 @@
-version: '3.8'
-
 services:
-  firmenladen-app-2:
-    build:
-      context: .
-    container_name: firmenladen-app-v2
-    ports:
-      - "8501:8501"
-    volumes:
-      - .:/app
-      - ./memory_data:/app/memory 
-    networks:
-      - mongo_mongo_net
-    restart: unless-stopped
-    user: root 
-
   nginx:
     image: nginx:stable
+    container_name: chatbot-nginx
     ports:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - firmenladen-app-2
     networks:
       - mongo_mongo_net
 
